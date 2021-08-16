@@ -3,9 +3,20 @@
 """
 Created on Sat Aug 14 21:41:50 2021
 
-@author: jyoti
+@author: dev
 """
 import copy
+import random
+
+def shuffleElements(aList):
+    
+    if not aList:
+        raise ValueError("Provided non empty List/Set")
+    random.shuffle(aList)
+
+def sortedKeyAsPerVal(xdict):
+    
+    return dict(sorted(xdict.items(), key=lambda item: item[1]))
 
 class DATA:
     
@@ -16,6 +27,7 @@ class DATA:
     HLinearCons = {}
     VLinearCons = {}
     FixedVal ={}
+    mapVarToWordLength = {}
     def __init__(self, kakuroProblemFile):
         
         
@@ -134,7 +146,32 @@ class DATA:
     def updateVarToFixVal(self, k, v):
         self.FixedVal[k] = v
         
+    def mapTolenthOfTheWordToVar(self):
         
+        mapVarToWordLengthTemp ={}
+        ## Start horizontally
+        for h in self.HLinearCons:
+            temp = self.HLinearCons[h]
+            
+            for v in temp[1]:
+                if v in mapVarToWordLengthTemp:
+                    mapVarToWordLengthTemp[v] = min(temp[0],mapVarToWordLengthTemp[v])
+                else:
+                    mapVarToWordLengthTemp[v]  = temp[0]
+        ## Similarly vertically
+        ## Start horizontally
+        for ver in self.VLinearCons:
+            temp = self.VLinearCons[ver]
+            
+            for v in temp[1]:
+                if v in mapVarToWordLengthTemp:
+                    mapVarToWordLengthTemp[v] = min(temp[0],mapVarToWordLengthTemp[v])
+                else:
+                    mapVarToWordLengthTemp[v]  = temp[0]
+        
+        self.mapVarToWordLength = sortedKeyAsPerVal(mapVarToWordLengthTemp)
+    
+    
     
     def updateHnUUB(self, newVars,key,value,Vars, LinearCons):    
         
@@ -179,6 +216,7 @@ class DATA:
             return Possible, newVars
         else:
             return self.updateHnUUB(newVars,key,value,Vars, self.VLinearCons)
-        
-        
+    
+    
+
         
