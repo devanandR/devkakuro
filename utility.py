@@ -158,7 +158,11 @@ class DATA:
                             else:
                                 newVars[i] = sumTemp - Vars[i]
                         else:## Modify Upper Bound
+                            ### But Check uniqness
+                            if value ==self.FixedVal[i]:
+                                return False, newVars
                             sumTemp = sumTemp - self.FixedVal[i]
+                            
                 if sumTemp < 0 or (allVarsettofix and sumTemp!=0):
                     return False,newVars ### Sum of effective upper bound is more than the given limit
                     
