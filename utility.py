@@ -148,7 +148,7 @@ class DATA:
         
     def mapTolenthOfTheWordToVar(self):
         
-        mapVarToWordLengthTemp ={}
+        mapVarToWordLengthTemp = {}
         ## Start horizontally
         for h in self.HLinearCons:
             temp = self.HLinearCons[h]

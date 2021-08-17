@@ -9,6 +9,7 @@ import random
 import utility 
 import copy
 import time
+import kakuroOptModel as cplexmodeling
 
 
 
@@ -73,7 +74,7 @@ def solvingKakuro(file):
     
     global solvingFlag, NewVar, valueTriedSoFar, depth, GridToFill
     
-    print("You can select a solving Method: ")
+    print("Plz select a solving Method: ")
     print("type r for random search based BnB method")
     print("     l for lexicographic search based BnB method")
     print("     m for most-constrained-grid-first search based BnB method")
@@ -101,7 +102,8 @@ def solvingKakuro(file):
     
     elif solvingFlag =='l':
         GridToFill = data.Var
-    
+    elif solvingFlag !='o' and solvingFlag !='c' and solvingFlag !='m':
+        raise ValueError("Plz Provide correct input...")
     
     VarInBoardToFill = data.Var
     KeyisFinallyUpdated ={}
@@ -111,7 +113,19 @@ def solvingKakuro(file):
         KeyisFinallyUpdated[i] = False
         valueTriedSoFar[i] = []
     
-    Stime = time.time()
-    solveUsingLexicoGraphicBranch(VarInBoardToFill,KeyisFinallyUpdated,data)
+    if solvingFlag =='o':
+        
+        Stime = time.time()
+        opt = cplexmodeling.OPT(data.Emptygrid, data.HLinearCons, data.VLinearCons)
+        ## Create model
+        opt.createModel(data.Var)
+        
+        ## solve and get solution
+        solVal = opt.solveModel()
+        print("Final Solution is ", solVal)
+        print("Time Taken in solving the problem instance (sec): ",(time.time() - Stime))
+    else:
+        Stime = time.time()
+        solveUsingLexicoGraphicBranch(VarInBoardToFill,KeyisFinallyUpdated,data)
     
-    print("Time Taken in solving the problem instance (sec): ",(time.time() - Stime))
+        print("Time Taken in solving the problem instance (sec): ",(time.time() - Stime))
