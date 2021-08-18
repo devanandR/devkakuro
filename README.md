@@ -1,3 +1,13 @@
+# About: Playing a Kauro game is addictive and satisfying. 
+Computationally this problem is not easy-belongs to the NP class. 
+
+I am enjoying writing some tricky solving techniques for Kakuro
+ 
+I have started with the branch-and-bound-based, BnB method with some basic branching rules. 
+The branching rules used are from my intuiting. There could be many (similar and different) 
+branching or search strategies used to solve Kakuro, which I am yet to explore.    
+
+
 # devkakuro
 # 1) To solve a given Kakuro problem: 
      just hit "python devkakuro.py problem file"
