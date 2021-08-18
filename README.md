@@ -18,7 +18,8 @@ branching (or search) strategies used to solve Kakuro, which I am yet to explore
      After that, you will be provided with choices of solving methods to select. 
      Your appropriate input will result in the solution of the problem and 
      the time it takes to solve using the selected method.
-  # NOTE: Plz comment "import kakuroOptModel as cplexmodeling" in solvingKakuromethods.py if you do not have cplex optimization engine installed
+  # NOTE: 
+      Plz comment "import kakuroOptModel as cplexmodeling" in solvingKakuromethods.py if you do not have cplex optimization engine installed
   
 # 2) Pattern example in the input file: here is the example input : 
      "#,5\#,19\#,#"
