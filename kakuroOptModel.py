@@ -6,6 +6,7 @@ Created on Tue Aug 17 15:31:19 2021
 @author: dev
 """
 import cplex
+import random
 
 class OPT:
     varIndx = []
@@ -86,18 +87,31 @@ class OPT:
         print("Now finding suitable constraints and vars for obj creation")
         for l in ConsList:
             ConsVars = ConsList[l][1]
+            absVarsName = []
             ## Add extra absolute constraints
             for r in ConsVars:
+                existingvarSet = set()
+                existingvarSet.add(r)
                 for s in ConsVars:
                     if r !=s:
+                        existingvarSet.add(s)
                         newvar = 'z'+str(r[0])+str(r[1])+"_"+str(s[0])+str(s[1])
-                        
-                        if newvar in self.absVarsName:
+                        ## Create a set and check 
+                        if existingvarSet in absVarsName:
+                            existingvarSet.remove(s)
+                            #print(existingvarSet,"existingvarSet")
+                            #print(absVarsName,"absVarsName")
                             continue
-                        self.absVarsName.append(newvar)
+                        absVarsName.append(existingvarSet)
                         rname = 'int_'+str(r[0])+str(r[1])
                         sname = 'int_'+str(s[0])+str(s[1])
                         self.addVariableToModel([newvar])
+                        
+                        ## Free this variable
+                        ## Lower bound update
+                        self.model.variables.set_lower_bounds([(newvar,-400)])
+        
+                        
                         indList = [newvar,rname,sname]
                         coefList = [1.,1.,-1.]
                         senseType = ["G"]
@@ -119,12 +133,12 @@ class OPT:
                         ##
                         self.addconstraintToModel(indList,coefList, senseType,Name,Rhs)            
                         
-                        
-                        
                         ## Update Pair for Objective creation
-                        self.ObjlistOfPair.append((newvar,100)) ## Some high number
+                        x = random.choice(range(10,100))
+                        #x = 1
+                        self.ObjlistOfPair.append((newvar,x)) ## Some high number
             ## Add extra absolute constraints
-            
+        
     def createObj(self):
         self.model.objective.set_linear(self.ObjlistOfPair)
         ## Change sense to maximize

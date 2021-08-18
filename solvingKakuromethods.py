@@ -5,11 +5,12 @@ Created on Mon Aug 16 23:13:27 2021
 
 @author: dev
 """
-import random
+
 import utility 
 import copy
 import time
 import kakuroOptModel as cplexmodeling
+import sys
 
 
 
@@ -72,7 +73,7 @@ def solveUsingLexicoGraphicBranch(VarInBoardToFill,KeyisFinallyUpdated,data):
 
 def solvingKakuro(file):
     
-    global solvingFlag, NewVar, valueTriedSoFar, depth, GridToFill
+    global solvingFlag, NewVar, depth, GridToFill
     
     print("Plz select a solving Method: ")
     print("type r for random search based BnB method")
@@ -102,16 +103,20 @@ def solvingKakuro(file):
     
     elif solvingFlag =='l':
         GridToFill = data.Var
+    elif solvingFlag =='c':
+        sys.exit("It is yet to be implemented plz rerun and try other solving method.")
+    
     elif solvingFlag !='o' and solvingFlag !='c' and solvingFlag !='m':
         raise ValueError("Plz Provide correct input...")
     
+    
     VarInBoardToFill = data.Var
     KeyisFinallyUpdated ={}
-    valueTriedSoFar = {}
+    #valueTriedSoFar = {}
     
     for i in data.Var:
         KeyisFinallyUpdated[i] = False
-        valueTriedSoFar[i] = []
+        #valueTriedSoFar[i] = []
     
     if solvingFlag =='o':
         
@@ -123,7 +128,11 @@ def solvingKakuro(file):
         ## solve and get solution
         solVal = opt.solveModel()
         print("Final Solution is ", solVal)
+        print()
         print("Time Taken in solving the problem instance (sec): ",(time.time() - Stime))
+        print()
+        print("NOTE: Uniquness need to be handled... Working on it")
+        
     else:
         Stime = time.time()
         solveUsingLexicoGraphicBranch(VarInBoardToFill,KeyisFinallyUpdated,data)
