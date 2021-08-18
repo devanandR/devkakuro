@@ -15,7 +15,7 @@
     "#\13" for example, says that the horzontal word just right to this block should add up to 13
     "19\#" for example, says that hte vertical word just  below this block should add up to 19
 
-#3) Methods used: There are three generic methods are being tried in the algo 
+# 3) Methods used: There are three generic methods are being tried in the algo 
       1) branch and bound
            - there are different types of techniques used to solve kakuro using the concept of 
             branch and bound method as per the branching selection rule (that is search methods)
