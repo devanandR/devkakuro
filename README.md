@@ -1,4 +1,4 @@
-# About: Playing Kauro game is addictive and satisfying. 
+# About: Playing Kakuro game is addictive and satisfying. 
 Computationally this problem is not easy-belongs to the NP class. 
 
 I am enjoying writing some tricky solving techniques for Kakuro
