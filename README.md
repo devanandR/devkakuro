@@ -1,4 +1,5 @@
-# About: Playing Kakuro game is addictive and satisfying. 
+# About: 
+Playing Kakuro game is addictive and satisfying. 
 Computationally this problem is not easy-belongs to the NP class. 
 
 I am enjoying writing some tricky solving techniques for Kakuro
@@ -16,7 +17,9 @@ branching (or search) strategies used to solve Kakuro, which I am yet to explore
      it will take a default problem file, "testFile1.txt" available in the repository.
      After that, you will be provided with choices of solving methods to select. 
      Your appropriate input will result in the solution of the problem and 
-     the time it takes to solve using the selected method. 
+     the time it takes to solve using the selected method.
+  # NOTE: Plz comment "import kakuroOptModel as cplexmodeling" in solvingKakuromethods.py if you do not have cplex optimization engine installed
+  
 # 2) Pattern example in the input file: here is the example input : 
      "#,5\#,19\#,#"
      "#\13,0,0,4\#"
