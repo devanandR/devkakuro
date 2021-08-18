@@ -30,7 +30,7 @@ branching (or search) strategies used to solve Kakuro, which I am yet to explore
 # 3) Methods used: There are three generic methods are being tried in the algo 
       1) branch and bound
            - there are different types of techniques used to solve kakuro using the concept of 
-            branch and bound method as per the branching selection rule (that is search methods).
+            branch and bound method as per the branching selection rule (that is search method).
            - 1) lexicographic: At each node from root to leaf in the branch and bound tree. 
                 We select the block to branch in a lexicographic manner. For the sample example shown above, 
                 first, the block position at (1,1) (just right to the block "#\13") will be chosen to 
