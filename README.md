@@ -57,4 +57,14 @@ branching (or search) strategies used to solve Kakuro, which I am yet to explore
            -CSP techniques are highly used for solving the Kakuro game as Kakuro game is formally a CSP problem.
            -I am in progress to use one of the CSPs. Yet to complete, yet to push the codes to Github
       
-      ##### python version: Python 3.8 #####
+       ##### python version: Python 3.8 #####
+   ### Branch and Bound procedure used: 
+     "Kakuro Solving Process": The solving process is generic for any branching-specific branch and bound methods summarized above. 
+     It starts with the given initial problem. It is called the root of the tree. At the root node, we have many empty blocks 
+     to fill with their specific possible values. We can pick one of them to start solving the problem. Because we have multiple 
+     choices for this block, we choose them one by one. The selection of block (or grid) is called a branching procedure. 
+     The state of the problem after updating the block is now called a new node.  
+     We keep following the same procedure until we reach the leaf of the tree. Note that for the Kakuro problem we have 
+     a single feasible solution, so the branch and bound generated will have only one leaf with maximum depth. 
+     The remaining leaves are placed with depths less than the maximum depth as their respective state becomes infeasible 
+      and, B&B has to traverse back to find the other feasible paths.    
